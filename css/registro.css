@@ -1,0 +1,226 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #1a1a1a;
+}
+
+.form-container {
+    position: relative;
+    perspective: 50rem;
+    width: 50rem;
+    height: 50rem;
+    box-shadow: 0px 15px 60px #e25822; /* Sombra rojo-naranja para login */
+    transition: box-shadow 0.5s ease-in-out;
+}
+
+#switch {
+    display: none;
+}
+
+.sign-up-form,
+.log-in-form {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.sign-up-container,
+.log-in-container {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    inset: 0;
+    margin: auto;
+    width: 20rem;
+    height: 20rem;
+    background: #333;
+    color: #fff;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0px 15px 60px #e25822; /* Rojo-naranja para login */
+    transition: box-shadow 0.5s ease-in-out;
+}
+
+#switch:checked ~ .sign-up-container {
+    box-shadow: 0px 15px 60px #ff4500; /* Rojo más intenso para registro */
+}
+
+.switch-label {
+    font-size: x-small;
+    text-decoration: underline;
+    cursor: pointer;
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.form-title {
+    font-size: x-large;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 1rem;
+    color: #e25822;
+}
+
+:where(.sign-up-form, .log-in-form) label {
+    font-size: x-small;
+    padding-top: 0.5rem;
+    padding-left: 0.25rem;
+    color: #ff4500;
+}
+
+:where(.sign-up-form, .log-in-form) input {
+    background-color: #fff2;
+    box-sizing: border-box;
+    color: #ff6347;
+    border: 0;
+    border-bottom: 2px solid #e25822;
+    padding: 0.25rem;
+    border-top-left-radius: 0.25rem;
+    border-top-right-radius: 0.25rem;
+    margin-bottom: 1rem;
+}
+
+:where(.sign-up-form, .log-in-form) input:focus-visible {
+    outline: none;
+    border: 1px solid #ff4500;
+    border-bottom: 2px solid #e25822;
+}
+
+:where(.sign-up-form, .log-in-form) button {
+    background-color: #ff45004b;
+    color: #fff;
+    border: 0;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+:where(.sign-up-form, .log-in-form) button:hover {
+    background-color: #e25822;
+}
+
+.forgot-pwd {
+    font-size: x-small;
+    text-decoration: underline;
+    margin-left: auto;
+    cursor: pointer;
+    color: #ff4500;
+}
+
+/* Social yoinked from uiverse.io/Yaya12085/short-panda-24 */
+.social-message {
+    display: flex;
+    align-items: center;
+    padding-top: 1rem;
+}
+
+.line {
+    height: 1px;
+    flex: 1 1 0%;
+    background-color: #e25822;
+}
+
+.social-message .message {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    color: #fff;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+}
+
+.social-icons .icon {
+    border-radius: 0.125rem;
+    padding: 0.75rem;
+    padding-bottom: 0.25rem;
+    border: none;
+    background-color: transparent;
+    margin-left: 8px;
+    cursor: pointer;
+}
+
+.social-icons .icon svg {
+    height: 1.25rem;
+    width: 1.25rem;
+    fill: #fff;
+}
+
+.sign-up-container {
+    animation: hello 0.5s linear forwards;
+}
+
+.log-in-container {
+    animation: unhello 0.5s linear forwards;
+}
+
+#switch:checked ~ .sign-up-container {
+    animation: unhello 0.5s linear forwards;
+}
+
+#switch:checked ~ .log-in-container {
+    animation: hello 0.5s linear forwards;
+}
+
+@keyframes hello {
+    0% {
+        transform: rotateY(-90deg);
+        display: none;
+    }
+    50% {
+        transform: rotateY(-90deg);
+        display: flex;
+    }
+    100% {
+        transform: rotateY(0deg);
+        display: flex;
+    }
+}
+
+@keyframes unhello {
+    0% {
+        transform: rotateY(0deg);
+        display: flex;
+    }
+    50% {
+        transform: rotateY(90deg);
+        display: flex;
+    }
+    100% {
+        transform: rotateY(90deg);
+        display: none;
+    }
+}
+
+/* Indicador de cambio */
+#indicator-container {
+    position: absolute;
+    bottom: -2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0.5rem;
+}
+
+.indicator {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #ccc;
+}
+
+.indicator.active {
+    background-color: #007bff; /* Azul para login */
+}
+
+#switch:checked ~ #indicator-container .indicator:nth-child(2) {
+    background-color: #ff6347; /* Rojo para registro */
+}
